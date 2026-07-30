@@ -62,21 +62,43 @@ Composite Sharpe per arm: haiku mech 0.34 > conv 0.23 > full 0.00 > raw −0.25;
 sonnet full 0.65 > mech 0.38 > raw 0.06 > conv −0.17 (t=1.46 on sonnet full —
 suggestive, not significant, n=60).
 
-## Observations (the honest readings)
+## Observations — the two designed experiments, per model
 
-1. **vs the mechanical arm.** On Haiku, the $0 mechanical PM beats every LLM arm
-   at the composite level (0.34 vs 0.23/0.00/−0.25) — the LLM subtracted value.
-   On Sonnet, the full arm moves ahead of mechanical (0.65 vs 0.38) but not
-   significantly at n=60. Same story as the driver-space d_ic verdicts:
-   Haiku destroys, Sonnet is neutral-to-mildly-positive, nothing clears a gate.
-2. **The equity Sharpes are beta, not timing.** All equity books carry a
-   persistent β ≈ −0.17 (the internals analysts leaned risk-off through a bull
-   market). Hedged, the mapped views have alpha ≈ 0 — the panel isn't
-   anti-skilled, it's short the index. The negative headline Sharpes are the
-   cost of the tilt, not of the month-to-month calls.
-3. **The sizing result survives the beta hedge (Haiku).** The PM-sized SPY books
-   show positive hedged alpha in all three Haiku LLM arms (t up to 1.2) while
-   their own mapped views sit at zero — the PM's demonstrated skill is when NOT
-   to hold the position, and that skill is not a beta artifact.
-4. **Windows differ** (126 vs 60 months) and the composite is an illustrative
-   post-hoc construction — label both on any chart that mixes them.
+### A. Attention effects: full (PM reads the 11 analysts) vs raw (PM fetches
+### all measurements into one context)
+- **Haiku:** full ≥ raw on 4/4 rates pods (largest gap front_end −0.03 vs
+  −0.23 d_ic); composite +0.25 Sharpe (0.00 vs −0.25, p_boot 0.57). Equities
+  the exception: raw −0.44 vs full −0.51 (p 0.86).
+- **Sonnet:** full ≥ raw on 3/4 rates pods; composite +0.59 Sharpe (0.65 vs
+  0.06, p_boot 0.19). Equities again the exception (raw −0.39 vs full −0.64).
+- **Reading:** directionally consistent support for the partitioned
+  architecture wherever the analysts have signal, gap WIDENING with model
+  quality (+0.25 → +0.59); it inverts exactly on the panel whose analysts are
+  anti-predictive (equities) — reading raw data lets the PM partially escape
+  bad analysts. Never significant.
+
+### B. Reasoning impact: full (reports + attribution) vs conv (signed
+### conviction only)
+- **Haiku:** the prose flips the position sign in 11-32% of months but adds
+  nothing — conv ≥ full on 4/4 rates pods, composite BETTER without reasoning
+  (0.23 vs 0.00), and conv is the one arm significantly below the no-PM
+  baseline on equities (p .042). Zero-to-negative reasoning impact.
+- **Sonnet:** prose flips far fewer decisions (sign agreement 81-98%) but
+  pays where it does: full ≥ conv on 3/4 rates pods; composite +0.82 Sharpe
+  (0.65 vs −0.17, **p_boot 0.10 — the largest contrast in the study**).
+  Equities indistinguishable.
+- **Reading:** reasoning impact is a property of the READER: the weak PM is
+  moved often and randomly by the prose; the strong PM overrides rarely and
+  profitably. The p=0.10 is stage-2's headline hypothesis, not a finding.
+
+### Supporting observations
+1. **vs the mechanical arm (composite):** Haiku — mech 0.34 beats every LLM
+   arm; Sonnet — full 0.65 vs mech 0.38 (t 1.46, n.s.). Destroying → neutral.
+2. **The equity Sharpes are beta, not timing:** every equity book carries
+   β ≈ −0.17; hedged alphas of the mapped views ≈ 0. The tilt, not the calls,
+   is the cost.
+3. **Sizing survives the beta hedge (Haiku):** PM-sized SPY books show
+   positive hedged alpha in all three LLM arms (t ≤ 1.2) while the views sit
+   at zero.
+4. **Windows differ** (126 vs 60 months); the composite is illustrative
+   post-hoc — label both on any chart that mixes them.
